@@ -1,0 +1,345 @@
+{
+ "swagger" : "2.0",
+ "info" : {
+     "version" : "1.0.0",
+     "title" : "CRUD Node JS",
+     "description": "Simple CRUD using Node JS"
+ },
+ "host": "localhost:8000",
+ "schemes" : [
+     "http"
+ ],
+ "tags":[
+     {
+         "name" : "Auth",
+         "description" : "Authenticate User"
+     },
+     {
+         "name" : "user",
+         "description" : "data user keluarga"
+     }
+ ],
+ "securityDefinitions" : {
+     "Bearer" : {
+         "type" : "apiKey",
+         "name" : "Authorization",
+         "in" : "header"
+     }
+ },
+ "paths" : {
+     "/api/signup":{
+         "post" : {
+             "tags":[
+                 "Auth"
+             ],
+             "summary" : "register a new user",
+             "description" : "",
+             "consumes":[
+                 "application/json"
+             ],
+             "parameters" : [
+                 {
+                     "in" : "body",
+                     "name" : "user",
+                     "description" : "register a new user email must be valid and password minimum 8",
+                     "required" : true,
+                     "schema":{
+                         "type" : "object",
+                         "required":[
+                             "email",
+                             "password",
+                             "nama"
+                         ],
+                         "properties" : {
+                             "nama" : {
+                                 "type" : "string",
+                                 "example" : "Afif"
+                             },
+                             "email" : {
+                                 "type" : "string",
+                                 "example" : "afiflampard@student.ub.ac.id"
+                             },
+                             "password":{
+                                 "type":"string",
+                                 "example" : "12345678"
+                             }
+                         }
+                     }
+                 }
+             ],
+             "responses" : {
+                "200": {
+                    "description": "OK"
+                  },
+                  "409": {
+                    "description": "User already exist"
+                  },
+                  "422": {
+                    "description": "Validation failed, please check your input"
+                  },
+                  "500": {
+                    "description": "Server error, report stack to backend developer"
+                  }
+             }
+         }
+     },
+     "api/signin":{
+        "post" : {
+            "tags":[
+                "Auth"
+            ],
+            "summary" : "User Login",
+            "description" : "",
+            "consumes":[
+                "application/json"
+            ],
+            "parameters" : [
+                {
+                    "in" : "body",
+                    "name" : "user",
+                    "description" : "User login into System",
+                    "required" : true,
+                    "schema":{
+                        "type" : "object",
+                        "required":[
+                            "email",
+                            "password"
+                        
+                        ],
+                        "properties" : {
+                            "email" : {
+                                "type" : "string",
+                                "example" : "afiflampard@student.ub.ac.id"
+                            },
+                            "password":{
+                                "type":"string",
+                                "example" : "12345678"
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses" : {
+               "200": {
+                   "description": "OK"
+                 },
+                 "409": {
+                   "description": "User already exist"
+                 },
+                 "422": {
+                   "description": "Validation failed, please check your input"
+                 },
+                 "500": {
+                   "description": "Server error, report stack to backend developer"
+                 }
+            }
+        }
+     },
+     "api/userId" : {
+        "post" : {
+            "tags":[
+                "User"
+            ],
+            "summary" : "User add kk and alamat",
+            "description" : "",
+            "consumes":[
+                "application/json"
+            ],
+            "parameters" : [
+                {
+                    "in" : "body",
+                    "name" : "userId",
+                    "description" : "User add kk and alamat",
+                    "required" : true,
+                    "schema":{
+                        "type" : "object",
+                        "required":[
+                            "kk",
+                            "alamat"
+                        
+                        ],
+                        "properties" : {
+                            "kk" : {
+                                "type" : "string",
+                                "example" : "12345677"
+                            },
+                            "alamat":{
+                                "type":"string",
+                                "example" : "jabon"
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses" : {
+               "200": {
+                   "description": "OK"
+                 },
+                 "409": {
+                   "description": "User already exist"
+                 },
+                 "422": {
+                   "description": "Validation failed, please check your input"
+                 },
+                 "500": {
+                   "description": "Server error, report stack to backend developer"
+                 }
+            }
+        }
+     },
+     "api/delete/{userId}/{keluargaId}" : {
+        "delete" : {
+            "tags":[
+                "User"
+            ],
+            "security" : [
+                {
+                    "Bearer" : []
+                }
+            ],
+            "summary" : "Delete kk and alamat",
+            "description" : "",
+            "consumes":[
+                "application/json"
+            ],
+            "parameters" : [
+                {
+                    "in" : "body",
+                    "name" : "userId",
+                    "description" : "Delete kk and alamat",
+                    "required" : true,
+                    "schema":{
+                        "type" : "object",
+                        "required":[
+                            "kk",
+                            "alamat"
+                        
+                        ],
+                        "properties" : {
+                            "kk" : {
+                                "type" : "string",
+                                "example" : "12345677"
+                            },
+                            "alamat":{
+                                "type":"string",
+                                "example" : "jabon"
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses" : {
+               "200": {
+                   "description": "OK"
+                 },
+                 "409": {
+                   "description": "User already exist"
+                 },
+                 "422": {
+                   "description": "Validation failed, please check your input"
+                 },
+                 "500": {
+                   "description": "Server error, report stack to backend developer"
+                 }
+            }
+        }
+     },
+     "api/update/{userId}/{keluargaId}" : {
+        "put" : {
+            "tags":[
+                "User"
+            ],
+            "security" : [
+                {
+                    "Bearer" : []
+                }
+            ],
+            "summary" : "Update kk and alamat",
+            "description" : "Update kk and alamat from database",
+            "consumes":[
+                "application/json"
+            ],
+            "parameters" : [
+                {
+                    "in" : "body",
+                    "name" : "userId",
+                    "description" : "",
+                    "required" : true,
+                    "schema":{
+                        "type" : "object",
+                        "required":[
+                            "kk",
+                            "alamat"
+                        
+                        ],
+                        "properties" : {
+                            "kk" : {
+                                "type" : "string",
+                                "example" : "12345677"
+                            },
+                            "alamat":{
+                                "type":"string",
+                                "example" : "jabon"
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses" : {
+               "200": {
+                   "description": "OK"
+                 },
+                 "409": {
+                   "description": "User already exist"
+                 },
+                 "422": {
+                   "description": "Validation failed, please check your input"
+                 },
+                 "500": {
+                   "description": "Server error, report stack to backend developer"
+                 }
+            }
+        }
+     },
+     "api/getData" : {
+        "get" : {
+            "tags":[
+                "User"
+            ],
+            "security" : [
+                {
+                    "Bearer" : []
+                }
+            ],
+            "summary" : "Get data From database",
+            "description" : "getData From Database",
+            "consumes":[
+                "application/json"
+            ],
+            "parameters" : [
+                {
+                    "in" : "body",
+                    "name" : "userId",
+                    "description" : "",
+                    "required" : true,
+                    "type": "integer"
+                }
+            ],
+            "responses" : {
+               "200": {
+                   "description": "OK"
+                 },
+                 "409": {
+                   "description": "User already exist"
+                 },
+                 "422": {
+                   "description": "Validation failed, please check your input"
+                 },
+                 "500": {
+                   "description": "Server error, report stack to backend developer"
+                 }
+            }
+        }
+     }
+ }   
+}

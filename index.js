@@ -3,6 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const swaggerConfig = require('./swagger.json');
 
 //import routes
 const AuthRoutes = require('./routes/auth')
@@ -29,10 +33,11 @@ app.use(cookieParser());
 app.use(expressValidator());
 
 
-
+app.use('/docs',swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 //routes middleware
 app.use('/api',AuthRoutes);
 app.use('/api',UserRoutes);
+
 
 
 app.listen(port,()=>{

@@ -19,6 +19,8 @@
     "express-validator": "^5.3.1",
     "knex": "^0.21.6",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "swagger-jsdoc": "^4.3.0",
+    "swagger-ui-express": "^4.1.4"
   }
 }
